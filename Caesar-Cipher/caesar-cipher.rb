@@ -1,19 +1,11 @@
-
 def caesar_cipher(string, shift)
-  new_word = String.new
-  string.each_char do |char|
-    if !char.match(/[a-z]/)
-      new_word += char
-    elsif (char.ord + shift) > 123
-      new_word += (96 + ((char.ord + shift) - 123)).chr
-    else
-      new_word += (char.ord + shift).chr
-    end
-  end
-  new_word
+  alphabet = [*'a'..'z']
+  shifted_alphabet = alphabet[shift..-1] << alphabet[0..shift -1]
+  p alphabet
+  p shifted_alphabet
 end
 
 
-puts caesar_cipher("What a string!", 5) #=> "Bmfy f xywnsl!"
+caesar_cipher("What a string!", 5) #=> "Bmfy f xywnsl!"
 
-puts caesar_cipher("z", 1)
+caesar_cipher("z", 1)
