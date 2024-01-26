@@ -5,7 +5,6 @@
 def caesar_cipher(message, shift)
   alphabet = [*'a'..'z']
   shifted_alphabet = get_shifted_alphabet(shift)
-  shifted_string = message
 
   message.gsub(/\w/, shifted_alphabet)
 end
@@ -25,4 +24,4 @@ def get_shifted_alphabet(shift)
   shifted_alphabet
 end
 
-# p caesar_cipher("What a string!", 5) #=> "Bmfy f xywnsl!"
+puts caesar_cipher("What a string!", 5) #=> "Bmfy f xywnsl!"
