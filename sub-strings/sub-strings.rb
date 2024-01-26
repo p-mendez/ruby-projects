@@ -2,13 +2,18 @@ def substrings(text, dictionary)
   matches = {}
   text.downcase!
 
-  dictionary.each do |word|
-    word.downcase!
-    if text.include? word
-      puts "before: " + matches.to_s
-      matches[word] = 1 + matches.fetch(word, 0)
-      puts "after: " + matches.to_s
-      puts
+  dictionary.each do |dictionary_word|
+    dictionary_word.downcase!
+    if text.include? dictionary_word
+      count = 0
+      text.split.each do |word_to_check|
+        if word_to_check.include? dictionary_word
+          count += 1
+        end
+      end
+      if count > 0
+          matches[dictionary_word] = count
+      end
     end
   end
   matches
