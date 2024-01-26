@@ -7,9 +7,7 @@ def substrings(text, dictionary)
     if text.include? dictionary_word
       count = 0
       text.split.each do |word_to_check|
-        if word_to_check.include? dictionary_word
-          count += 1
-        end
+        count += 1 if word_to_check.include? dictionary_word
       end
       if count > 0
           matches[dictionary_word] = count
