@@ -3,21 +3,10 @@ def substrings(text, dictionary)
   text.downcase!
 
   dictionary.each do |dictionary_word|
-    dictionary_word.downcase!
-
-    if text.include? dictionary_word
-      count = 0
-
-      text.split.each do |word_to_check|
-        count += 1 if word_to_check.include? dictionary_word
-      end
-
-      if count > 0
-          matches[dictionary_word] = count
-      end
-
-    end
+    count = text.scan(dictionary_word).size
+    matches[dictionary_word] = count if count > 0
   end
+
   matches
 end
 
