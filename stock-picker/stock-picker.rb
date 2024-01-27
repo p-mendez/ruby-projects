@@ -9,7 +9,7 @@ def stock_picker(days)
     days_left = days[current_day..-1]   # as an array
     current_profit = days_left.map do |sell_value|
       sell_value - buy_value
-    end.max       # gets max value from array of all profits
+    end.max                               # gets max value from array of all profits
 
     if current_profit > best_profit
       best_profit = current_profit
