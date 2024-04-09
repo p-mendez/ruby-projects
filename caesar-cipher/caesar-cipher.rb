@@ -2,7 +2,7 @@ def caesar_cipher(string, shift)
   # create new hash: shifted alphabet
   dict = shift_alphabet(shift)
   # loop through new_string and translate to dict
-  cipher(dict)
+  cipher(string, dict)
 end
 
 def shift_alphabet(shift)
@@ -21,7 +21,27 @@ def shift_alphabet(shift)
   dict
 end
 
-# def cipher(
+def cipher(str, dict)
+  ciphered_string = String.new
+  str.each_char do |char|
+    ciphered_string +=
+      if dict.include? char.downcase
+        shift_letter_using(dict, char)
+      else
+        char
+      end
+  end
+
+  ciphered_string
+end
+
+def shift_letter_using(dict, char)
+  if char == char.upcase
+    dict[char.downcase].upcase
+  else
+    dict[char]
+  end
+end
 
 puts caesar_cipher("What a string!", 5)
 # "Bmfy f xywnsl!"
