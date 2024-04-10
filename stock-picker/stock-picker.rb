@@ -1,25 +1,29 @@
-def stock_picker(days)
-  # variables
-  best_profit = 0
-  best_buy_day = 0    # by index
-  best_sell_day = 0   # by index
+# Implement a method #substrings that takes a word as the first argument
+# and then an array of valid substrings (your dictionary) as the second argument.
 
-  # iterate through each day checking for if profit is bigger than best profit
-  days.each_with_index do |buy_value, current_day|
-    days_left = days[current_day..-1]   # as an array
-    current_profit = days_left.map do |sell_value|
-      sell_value - buy_value
-    end.max                               # gets max value from array of all profits
+# It should return a hash listing each substring (case insensitive) that was found in the original string
+# and how many times it was found.
 
-    if current_profit > best_profit
-      best_profit = current_profit
-      best_buy_day = current_day
-      best_sell_day = days_left.index(days_left.max) + current_day  # index + offset
-    end
+# In my own words: substrings(string, dictionary) return {word_found : times_found}
+
+
+def substrings(string, dict)
+  # convert string to array
+  str_arr = string.split
+  result_dict = Hash.new
+
+  # loop through each dictionary word and count
+  dict.each do |dict_word|
+    count = str_arr.count { |str_arr_element| str_arr_element.downcase.include? dict_word }
+    result_dict[dict_word] = count if count.positive?
   end
 
-  [best_buy_day, best_sell_day]
+  result_dict
 end
 
-p stock_picker([17,3,6,9,15,8,6,1,10])
-# => [1,4]   for a profit of $15 - $3 == $12
+# dictionary = ["below","down","go","going","horn","how","howdy","it","i","low","own","part","partner","sit"]
+# puts substrings("below", dictionary)
+# puts '=> { "below" => 1, "low" => 1 }'
+
+# puts substrings("Howdy partner, sit down! How's it going?", dictionary)
+# puts '{ "down" => 1, "go" => 1, "going" => 1, "how" => 2, "howdy" => 1, "it" => 2, "i" => 3, "own" => 1, "part" => 1, "partner" => 1, "sit" => 1 }'
